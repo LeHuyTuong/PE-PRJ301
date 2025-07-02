@@ -20,6 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class DispatchServlet extends HttpServlet {
     private final String LOGIN_PAGE ="login.html";
     private final String LOGIN_ACCOUNT_CONTROLLER ="LoginAccountServlet";
+    private final String LOGOUT_ACCOUNT_CONTROLLER ="LogoutAccountServlet";
+    private final String CHECK_ACCOUNT_CONTROLLER = "CheckAccountServlet";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -35,7 +37,7 @@ public class DispatchServlet extends HttpServlet {
         String url = LOGIN_PAGE;
         try  {
             if(button == null){
-                
+                url = CHECK_ACCOUNT_CONTROLLER;
             }else{
                 switch (button) {
                     case "Login":

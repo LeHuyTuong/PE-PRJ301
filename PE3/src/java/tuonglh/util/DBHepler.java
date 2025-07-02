@@ -13,13 +13,20 @@ import java.sql.SQLException;
  * @author USER
  */
 public class DBHepler {
+    //-- JDBC API 
     public static Connection makeConnection()
-    throws SQLException, ClassNotFoundException{
+    throws ClassNotFoundException,SQLException {
+        //1. Load Driver
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String url = "jdbc:sqlserver://"
+        
+        //2. Create connection String to connect container
+        // syntax: jdbc:sqlserver://ip:port;databaseName=PRJSE1809
+        
+        String url= "jdbc:sqlserver://"
                 + "localhost:1433;"
                 + "databaseName=PRJSE1809";
-        Connection con = DriverManager.getConnection(url);
+        //3. Open connect using Driver Manager
+        Connection con = DriverManager.getConnection(url, "sa", "12345");
         return con;
     }
 }

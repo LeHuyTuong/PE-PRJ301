@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -45,10 +46,16 @@ public class LoginAccountServlet extends HttpServlet {
            //2 call method from dao 
             RegistrationDAO dao = new RegistrationDAO();
             RegistrationDTO result = dao.checkLogin(username, password);
+            
+            
             if(result != null){
                 url = SEARCH_PAGE;
                 HttpSession session = request.getSession();
                 session.setAttribute("USER_INFO", result);
+                
+                Cookie cookies = new Cookie(username, password);
+                cookies.setMaxAge(60*5);
+                response.addCookie(cookies);
             }
         }catch(SQLException ex){
             log("SQL " + ex.getMessage());
