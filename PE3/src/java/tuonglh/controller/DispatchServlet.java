@@ -43,6 +43,9 @@ public class DispatchServlet extends HttpServlet {
                     case "Login":
                         url = LOGIN_ACCOUNT_CONTROLLER;
                         break;
+                    case"Logout":
+                        url = LOGOUT_ACCOUNT_CONTROLLER;
+                        break;
                     default:
                         throw new AssertionError();
                 }

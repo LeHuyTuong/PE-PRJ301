@@ -24,7 +24,7 @@ import tuonglh.registration.RegistrationDTO;
 @WebServlet(name = "CheckAccountServlet", urlPatterns = {"/CheckAccountServlet"})
 public class CheckAccountServlet extends HttpServlet {
 
-    private final String SEARCH_PAGE = "search.html";
+    private final String SEARCH_PAGE = "search.jsp";
     private final String LOGIN_PAGE = "login.html";
 
     /**
