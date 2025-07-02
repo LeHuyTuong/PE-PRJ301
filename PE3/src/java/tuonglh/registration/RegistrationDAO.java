@@ -28,9 +28,9 @@ public class RegistrationDAO implements Serializable{
         try{
             con = DBHepler.makeConnection();
             if(con != null){
-                String query = "Select lastname, role "
-                        + "From Registration "
-                        + "Where username = ?"
+                String query = "Select lastname, isAdmin "
+                        + "From Registration     "
+                        + "Where username = ? "
                         + "And password = ? ";
                 stm = con.prepareStatement(query);
                 stm.setString(1, username);
@@ -38,7 +38,7 @@ public class RegistrationDAO implements Serializable{
                 rs = stm.executeQuery();
                 if(rs.next()){
                     String fullname = rs.getString("lastname");
-                    String role = rs.getString("isAdmin");
+                    boolean role = rs.getBoolean("isAdmin");
                     result = new RegistrationDTO(username, password, fullname, role);
                 }
             }
