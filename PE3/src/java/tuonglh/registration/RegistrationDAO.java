@@ -134,4 +134,41 @@ public class RegistrationDAO implements Serializable{
         }
         return result;
     }
+    public boolean updateAccount(String username,String password, String role ) 
+            throws SQLException, ClassNotFoundException{
+        //1 connect 
+        boolean result =false;
+        Connection con = null;
+        //2 get statemet 
+        PreparedStatement stm = null;
+        try{
+            con = DBHepler.makeConnection();
+            if(con != null){
+                String query = "UPDATE Registration "
+                        + "SET password = ? , "
+                        + "isAdmin = ? "
+                        + "Where username = ? ";
+                stm = con.prepareStatement(query);
+                stm.setString(1, password);
+                if(role != null){
+                    stm.setBoolean(2, true);
+                }else{
+                    stm.setBoolean(2, false);
+                }
+                stm.setString(3, username);
+                int effectRows = stm.executeUpdate(); // vi delete update insert tra ve so dong hieu luc
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        }finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return result;
+    }
 }

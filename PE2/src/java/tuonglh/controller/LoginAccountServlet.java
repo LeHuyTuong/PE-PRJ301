@@ -52,7 +52,7 @@ public class LoginAccountServlet extends HttpServlet {
                 session.setAttribute("USER_INFO", result);
                 
                 Cookie cookie = new Cookie(username, password);
-                cookie.setMaxAge(60 * 5);
+                cookie.setMaxAge(60*5);
                 response.addCookie(cookie);
             }// exist account 
         }catch(SQLException ex){

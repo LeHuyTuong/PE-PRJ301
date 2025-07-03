@@ -111,4 +111,77 @@ public class RegistrationDAO implements Serializable {
         }
 
     }
+    
+    
+    public boolean deleteAccount(String username)throws SQLException, ClassNotFoundException {
+        //b1 Tra ve kieu du lieu 
+        //b2 ket noi db
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHepler.makeConnection();
+            if (con != null) {
+                //3. String query
+                String query = "Delete "
+                        + "From Registration "
+                        + "Where username = ? ";
+                stm = con.prepareStatement(query); // add statement vao trong tham chieu
+                stm.setString(1, username);
+                //4 Tra ket qua cua query ve result set 
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+    
+    public boolean updateAccount(String username,String password, String role)
+            throws SQLException, ClassNotFoundException {
+        //b1 Tra ve kieu du lieu 
+        //b2 ket noi db
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHepler.makeConnection();
+            if (con != null) {
+                //3. String query
+                String query = "UPDATE Registration "
+                        + "Set password = ? , "
+                        + "isAdmin = ? "
+                        + "Where username = ? ";
+                stm = con.prepareStatement(query); // add statement vao trong tham chieu
+                stm.setString(1, password);
+                if(role != null){
+                    stm.setBoolean(2, true);
+                }else{
+                    stm.setBoolean(2, false);
+                }
+                stm.setString(3, username);
+                //4 Tra ket qua cua query ve result set 
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }
