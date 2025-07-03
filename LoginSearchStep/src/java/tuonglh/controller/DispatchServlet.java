@@ -21,6 +21,9 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGIN_PAGE = "login.html";
     private final String LOGIN_CONTROLLER = "LoginServlet";
     private final String SEARCH_ACCOUNT_CONTROLLER = "SearchAccountServlet";
+    private final String CHECK_ACCOUNT_CONTROLLER = "CheckAccountServlet";
+    private final String DELETE_ACCOUNT_CONTROLLER ="DeleteAccountServlet";
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -37,7 +40,7 @@ public class DispatchServlet extends HttpServlet {
         String button = request.getParameter("btAction");
         try {
             if(button == null){
-                
+                url = CHECK_ACCOUNT_CONTROLLER;
             }else{
                 switch (button) {
                     case "Login":
@@ -45,6 +48,9 @@ public class DispatchServlet extends HttpServlet {
                         break;
                     case "Search":
                         url = SEARCH_ACCOUNT_CONTROLLER;
+                        break;
+                    case"Delete":
+                        url = DELETE_ACCOUNT_CONTROLLER;
                         break;
                     default:
                         throw new AssertionError();

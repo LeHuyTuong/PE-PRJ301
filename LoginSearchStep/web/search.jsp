@@ -15,9 +15,9 @@
     </head>
     <body>
         Welcome , ${sessionScope.USER_INFO.fullname}
-        
+
         <h1>Search Page</h1>
-        
+
         <form action="DispatchServlet">
             SearchValue <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" /> 
             <input type="submit" value="Search" name="btAction" />
@@ -25,40 +25,50 @@
         <c:set var="searchValue" value="${param.txtSearchValue}" />
         <c:if test="${not empty searchValue}" >
             <c:set var="result" value="${requestScope.SEARCH_RESULT}"  />
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Fullname</th>
-                        <th>Role</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <c:forEach var="dto" items="${result}" varStatus="counter">
-                    <tbody>
-
+            <c:if test="${not empty result}">
+                <table border="1">
+                    <thead>
                         <tr>
-                            <td>
-                                ${counter.count}
-                                .
-                            </td>
-                            <td>${dto.username}</td>
-                            <td>${dto.password}</td>
-                            <td>${dto.fullname}</td>
-                            <td>${dto.role}</td>
-                            <td>Delete</td>
+                            <th>No.</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Fullname</th>
+                            <th>Role</th>
+                            <th>Delete</th>
                         </tr>
-                    </tbody>
-                </c:forEach>
-                    <c:if test="${empty result}">
-                <font color="red">
-                No Recording
-                </font>
+                    </thead>
+                    <c:forEach var="dto" items="${result}" varStatus="counter">
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    ${counter.count}
+                                    .
+                                </td>
+                                <td>${dto.username}</td>
+                                <td>${dto.password}</td>
+                                <td>${dto.fullname}</td>
+                                <td>${dto.role}</td>
+                                <td>
+                                    <c:url var="deleteLink" value="DispatchServlet">
+                                        <c:param name="btAction" value="Delete" />
+                                        <c:param name="pk" value="${dto.username}" />
+                                        <c:param name="lastSearchValue" 
+                                                 value="${param.txtSearchValue}" />
+                                    </c:url>
+                                    <a href="${deleteLink}">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty result}">
+                    <font color="red">
+                    No Recording
+                    </font>
+                </c:if>
             </c:if>
-            </c:if>
-            
+
         </table>
 
 
