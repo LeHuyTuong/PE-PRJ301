@@ -138,6 +138,83 @@ public class RegistrationDAO implements Serializable{
         
         return result;
     }
+    public boolean updateAccount(String username, String password, String role) 
+            throws SQLException, ClassNotFoundException{
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            // 1 connect DB 
+            con = DBHepler.makeConnection();
+            if(con != null){
+                // query
+                String query = "UPDATE Registration "
+                        + "Set password = ? ,"
+                        + "isAdmin = ? "
+                        + "Where username = ?";
+                //set statement
+                stm = con.prepareStatement(query);
+                stm.setString(1, password);
+                if(role != null){
+                    stm.setBoolean(2, true);
+                }else{
+                    stm.setBoolean(2, false);
+                }
+                
+                stm.setString(3, username);
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        }finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        
+        return result;
+    }
+    
+    public boolean createAccount(RegistrationDTO accounts) 
+            throws SQLException, ClassNotFoundException{
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            // 1 connect DB 
+            con = DBHepler.makeConnection();
+            if(con != null){
+                // query
+                String query = "INSERT INTO Registration "
+                        + "(username, password, lastname, isAdmin )"
+                        + "Values (?, ?, ?, ?)";
+                //set statement
+                stm = con.prepareStatement(query);
+                stm.setString(1, accounts.getUsername());
+                stm.setString(2, accounts.getPassword());
+                stm.setString(1, accounts.getFullname());
+                stm.setBoolean(4, accounts.isRole());
+               
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        }finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        
+        return result;
+    }
 
 }
 
