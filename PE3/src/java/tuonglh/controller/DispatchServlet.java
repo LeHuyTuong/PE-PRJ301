@@ -25,6 +25,7 @@ public class DispatchServlet extends HttpServlet {
     private final String SEARCH_ACCOUNT_CONTROLLER = "SearchAccountServlet";
     private final String DELETE_ACCOUNT_CONTROLLER = "DeleteAccountServlet";
     private final String UPDATE_ACCOUNT_CONTROLLER ="UpdateAccountServlet";
+    private final String CREATE_ACCOUNT_CONTROLLER ="CreateAccountServlet";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -57,6 +58,9 @@ public class DispatchServlet extends HttpServlet {
                         break;
                     case "Update":
                         url = UPDATE_ACCOUNT_CONTROLLER;
+                        break;
+                    case "Signin":
+                        url = CREATE_ACCOUNT_CONTROLLER;
                         break;
                     default:
                         throw new AssertionError();
