@@ -171,4 +171,39 @@ public class RegistrationDAO implements Serializable{
         }
         return result;
     }
+    
+    public boolean insertAccount (RegistrationDTO accounts)
+            throws SQLException, ClassNotFoundException{
+        //1 connect 
+        boolean result =false;
+        Connection con = null;
+        //2 get statemet 
+        PreparedStatement stm = null;
+        try{
+            con = DBHepler.makeConnection();
+            if(con != null){
+                String query = "INSERT INTO Registration ("
+                        + "username , password , lastname , isAdmin ) "
+                        + "Values (?, ?, ?, ?"
+                        + ")";
+                stm = con.prepareStatement(query);
+                stm.setString(1, accounts.getUsername());
+                stm.setString(2, accounts.getPassword());
+                stm.setString(3, accounts.getFullname());
+                stm.setBoolean(4, accounts.isRole());
+                int effectRows = stm.executeUpdate(); // vi delete update insert tra ve so dong hieu luc
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        }finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return result;
+    }
 }
