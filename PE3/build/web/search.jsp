@@ -20,7 +20,7 @@
     </style>
     <body>
         <font color="red">
-        Welcome , ${sessionScope.USER_INFO.username}
+        Welcome , ${sessionScope.USER_INFO.fullname}
         </font>
         <form action="DispatchServlet">
             <input class="logout" type="submit" value="Logout" name="btAction" />
@@ -42,6 +42,7 @@
                             <th>Password</th>
                             <th>Full Name</th>
                             <th>Role</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,16 +63,25 @@
                                 <td>
                                     ${dto.role}
                                 </td>
+                                <td>
+                                    <c:url var="deleteLink" value="DispatchServlet">
+                                        <c:param name="btAction" value="Delete"/>
+                                        <c:param name="pk" value="${dto.username}"/>
+                                        <c:param name="lastSearchValue"
+                                               value="${param.txtSearchValue}"/>
+                                    </c:url>
+                                    <a href="${deleteLink}">Delete</a>
+                                </td>
                             </tr>
                         </c:forEach>
-                   
-                     
-                </tbody>
-            </table>
+
+
+                    </tbody>
+                </table>
             </c:if>
             <c:if test="${empty result}">
                 <h2>No Recording </h2>       
             </c:if>  
-            </c:if>
-        </body>
-    </html>
+        </c:if>
+    </body>
+</html>
