@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/registration/RegistrationDAO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/controller/CheckAccountServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/controller/SearchAccountServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/web/login.html</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/registration/RegistrationDTO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/web/invalid.html</file>
             <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/util/DBHepler.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/web/search.html</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/controller/DispatchServlet.java</file>
             <file>file:/D:/Desktop/PE_PRJ/PE3/web/index.html</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/web/search.jsp</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/src/java/tuonglh/controller/LoginAccountServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE3/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>
