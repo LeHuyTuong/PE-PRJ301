@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class DispatchServlet extends HttpServlet {
     private final String LOGIN_PAGE = "login.html";
     private final String LOGIN_CONTROLLER = "LoginServlet";
-    
+    private final String SEARCH_ACCOUNT_CONTROLLER = "SearchAccountServlet";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -42,6 +42,9 @@ public class DispatchServlet extends HttpServlet {
                 switch (button) {
                     case "Login":
                         url = LOGIN_CONTROLLER;
+                        break;
+                    case "Search":
+                        url = SEARCH_ACCOUNT_CONTROLLER;
                         break;
                     default:
                         throw new AssertionError();

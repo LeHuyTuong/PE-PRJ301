@@ -13,8 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 import tuonglh.registration.RegistrationDAO;
 import tuonglh.registration.RegistrationDTO;
 
@@ -22,11 +22,10 @@ import tuonglh.registration.RegistrationDTO;
  *
  * @author USER
  */
-@WebServlet(name="LoginServlet", urlPatterns={"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-    private final String INVALID_PAGE = "invalid.html";
-    private final String SEARCH_PAGE = "search.jsp";
-    
+@WebServlet(name="SearchAccountServlet", urlPatterns={"/SearchAccountServlet"})
+public class SearchAccountServlet extends HttpServlet {
+   private final String ERROR_PAGE = "search.jsp";
+   private final String SEARCH_PAGE = "search.jsp";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -37,26 +36,23 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        //1 get user info
-        String username = request.getParameter("txtUsername");
-        String password = request.getParameter("txtPassword");
-        String url = INVALID_PAGE;
-        try {
-            //b2 call dao method 
-            RegistrationDAO dao = new RegistrationDAO();
-            RegistrationDTO result = dao.checkLogin(username, password);
-            
-            if(result != null){
-                url = SEARCH_PAGE;
-                HttpSession session = request.getSession();
-                session.setAttribute("USER_INFO", result);
+        String url = ERROR_PAGE;
+        // b1 get value
+        String searchValue = request.getParameter("txtSearchValue");
+        try{
+            if(!searchValue.trim().isEmpty()){
+                RegistrationDAO dao = new RegistrationDAO();
+                dao.searchAccount(searchValue);
+                List<RegistrationDTO> account = dao.getAccount();
+                if(account != null){
+                    url = SEARCH_PAGE;
+                    request.setAttribute("SEARCH_RESULT", account);
+                }
             }
-        }
-        catch(SQLException ex){
-            log("SQL" + ex.getMessage());
+        }catch(SQLException ex){
+            log("SQL" +ex.getMessage());
         }catch(ClassNotFoundException ex){
-            log("Class Not Found "+ ex.getMessage());
+            log("Class not found " + ex.getMessage());
         }
         finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);

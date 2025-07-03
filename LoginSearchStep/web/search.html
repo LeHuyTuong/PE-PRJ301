@@ -5,11 +5,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Search Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <h1>Search Page</h1>
+        <form action="DispatchServlet">
+            SearchValue <input type="text" name="txtSearchValue" value="" /> 
+            <input type="submit" value="Search" name="btAction" />
+        </form>
     </body>
 </html>
