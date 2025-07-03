@@ -46,14 +46,18 @@ public class CheckAccountServlet extends HttpServlet {
         try {
             if (Cookie != null) {
                 Cookie recentCookies = Cookie[Cookie.length - 1];
+                
                 String username = recentCookies.getName();
                 String password = recentCookies.getValue();
+                                                                            
                 RegistrationDAO dao = new RegistrationDAO();
                 RegistrationDTO result = dao.checkLogin(username, password);
+                
                 if (result != null) {
+                    url = SEARCH_PAGE;
                     HttpSession session = request.getSession();
                     session.setAttribute("USER_INFO", result);
-                    url = SEARCH_PAGE;
+                    
                 }
             }
 

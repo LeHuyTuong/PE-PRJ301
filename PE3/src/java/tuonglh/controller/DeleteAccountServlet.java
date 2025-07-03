@@ -36,7 +36,7 @@ public class DeleteAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //b1 get info
         String username = request.getParameter("pk");
-        String lastSearchValue = request.getParameter("lastSearchValue");
+        String searchValue = request.getParameter("lastSearchValue");
         String url = ERROR_PAGE;
         try {
             //2 call method 
@@ -44,8 +44,8 @@ public class DeleteAccountServlet extends HttpServlet {
             boolean result = dao.deleteAccount(username);
             if (result == true) {
                 url = "DispatchServlet"
-                        + "?btAction=Search"
-                        + "&txtSearchValue=" + lastSearchValue;
+                        + "?btAction=Search"    
+                        + "&txtSearchValue=" + searchValue;
             }
         }catch(SQLException ex){
             log("SQL" + ex.getMessage());

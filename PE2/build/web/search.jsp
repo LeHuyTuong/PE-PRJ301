@@ -19,8 +19,8 @@
             Search Value<input type="text" name="txtSearchValue" value="${param.txtSearchValue}" />
             <input type="submit" value="Search" name="btAction" />
         </form>
-        
-        <c:set var="searchValue" value="${param.txtSearchValue}param.txtSearchValue}}" />
+
+        <c:set var="searchValue" value="${param.txtSearchValue}" />
         <c:if test="${not empty searchValue}">
             <c:set var="result" value="${requestScope.SEARCH_RESULT}" />
             <c:if test="${not empty result}">
@@ -33,30 +33,58 @@
                             <th>fullName</th>
                             <th>role</th>
                             <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="dto" items="${result}" varStatus="counter">
-                        <tr>
-                            <td>
-                                ${counter.count}
-                            .</td>
-                            <td>${dto.username}</td>
-                            <td>${dto.password}</td>
-                            <td>${dto.fullName}</td>
-                            <td>${dto.role}</td>
+                        <form action="DispatchServlet" method="POST">
+
+                            <tr>
+                                <td>
+                                    ${counter.count}
+                                    .</td>
+                                <td>${dto.username}
+                                    <input type="hidden" name="txtUsername" value="${dto.username}" />
+                                </td>
+                                <td>
+                                    <input type="text" name="txtPassword" value="${dto.password}" />
+                                </td>
+                                <td>${dto.fullName}</td>
+                                <td>
+                                    <input type="checkbox" name="chkRole" value="ON"
+                                    <c:if test="${dto.role}">
+                                        checked = "checked"
+                                    </c:if>
+                                         />
+                                </td>
+                                <td>
+                                    <c:url var="deleteLink" value="DispatchServlet">
+                                        <c:param name="btAction" value="Delete" />
+                                        <c:param name="pk" value="${dto.username}" />
+                                        <c:param name="lastSearchValue" 
+                                                 value="${param.txtSearchValue}" />
+                                    </c:url>
+                                    <a href="${deleteLink}">Delete</a>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="lastSearchValue" 
+                                           value="${searchValue}" />
+                                    <input type="submit" value="Update" name="btAction" />
+                                </td>
+                            </tr>
                             
-                        </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
-            <c:if test="${empty result}">
-                <font color="red">
-                    No have record
-                </font>
-            </c:if>
+                        </form>     
+                    </c:forEach>
+                </tbody>
+            </table>
         </c:if>
-        
-    </body>
+        <c:if test="${empty result}">
+            <font color="red">
+            No have record
+            </font>
+        </c:if>
+    </c:if>
+
+</body>
 </html>
