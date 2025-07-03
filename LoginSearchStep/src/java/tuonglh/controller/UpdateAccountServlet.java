@@ -5,29 +5,23 @@
 
 package tuonglh.controller;
 
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import tuonglh.registration.RegistrationDAO;
 
 /**
  *
  * @author USER
  */
-public class DispatchServlet extends HttpServlet {
-    private final String LOGIN_PAGE = "login.html";
-    private final String LOGIN_CONTROLLER = "LoginServlet";
-    private final String SEARCH_ACCOUNT_CONTROLLER = "SearchAccountServlet";
-    private final String CHECK_ACCOUNT_CONTROLLER = "CheckAccountServlet";
-    private final String DELETE_ACCOUNT_CONTROLLER ="DeleteAccountServlet";
-    private final String UPDATE_ACCOUNT_CONTROLLER ="UpdateAccountServlet";
-    private final String CREATE_ACCOUNT_CONTROLLER ="CreateAccountServlet";
-    
-    
-    
+@WebServlet(name="UpdateAccountServlet", urlPatterns={"/UpdateAccountServlet"})
+public class UpdateAccountServlet extends HttpServlet {
+    private final String ERROR_PAGE ="error.html";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -38,37 +32,30 @@ public class DispatchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = LOGIN_PAGE;
         
-        // get button 
-        String button = request.getParameter("btAction");
+        String username = request.getParameter("txtUsername");
+        String password = request.getParameter("txtPassword");
+        String role = request.getParameter("chkRole");
+        String searchValue = request.getParameter("txtSearchValue");
+        
+        String url = ERROR_PAGE;
         try {
-            if(button == null){
-                url = CHECK_ACCOUNT_CONTROLLER;
-            }else{
-                switch (button) {
-                    case "Login":
-                        url = LOGIN_CONTROLLER;
-                        break;
-                    case "Search":
-                        url = SEARCH_ACCOUNT_CONTROLLER;
-                        break;
-                    case"Delete":
-                        url = DELETE_ACCOUNT_CONTROLLER;
-                        break;
-                    case"Update":
-                        url = UPDATE_ACCOUNT_CONTROLLER;
-                        break;
-                    case"Create":
-                        url = CREATE_ACCOUNT_CONTROLLER;
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+            RegistrationDAO dao = new RegistrationDAO();
+            boolean result = dao.updateAccount(username, password, role);
+            System.out.println("result" + result);
+            if(result == true){
+                url = "DispatchServlet"
+                        + "?btAction=Search"
+                        + "&txtSearchValue=" + searchValue;
             }
+            
+        }
+        catch(SQLException ex){
+            log("SQL" +ex.getMessage());
+        }catch(ClassNotFoundException ex){
+            log("Class not found " + ex.getMessage());
         }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect(url);
         }
     } 
 
