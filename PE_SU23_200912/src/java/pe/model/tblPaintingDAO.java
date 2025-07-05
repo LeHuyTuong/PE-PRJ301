@@ -67,4 +67,34 @@ public class tblPaintingDAO implements Serializable {
             }
         }
     }
+    
+    public boolean deletePainting(String id)
+            throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHepler.getConnection();
+            if (con != null) {
+                String query = "Update tblPainting "
+                        + "SET status = ? "
+                        + "Where id = ? ";
+                stm = con.prepareStatement(query);
+                stm.setBoolean(1, false);
+                stm.setString(2, id);
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }
