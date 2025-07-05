@@ -4,24 +4,28 @@
  */
 package pe.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import java.util.List;
+import pe.model.tblPaintingDAO;
+import pe.model.tblPaintingDTO;
 
 /**
  *
  * @author USER
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
+public class SearchServlet extends HttpServlet {
 
-    private final String LOGIN_PAGE = "login.jsp";
-    private final String LOGIN_SERVLET = "LoginServlet";
-    private final String LOGOUT_SERVLET = "LogoutServlet";
-    private final String SEARCH_SERVLET = "SearchServlet";
-    
+    private final String PAITING_PAGE = "paintingList.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,31 +38,22 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = LOGIN_PAGE;
+        String description = request.getParameter("txtDescription");
+        String url = PAITING_PAGE;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = LOGIN_PAGE;
-            } else {
-                switch (action) {
-                    case "Login":
-                        url = LOGIN_SERVLET;
-                        break;
-                    case "Logout":
-                        url = LOGOUT_SERVLET;
-                        break;
-                    case "Search":
-                        url = SEARCH_SERVLET;
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-            }
-//            your code here
-        } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            tblPaintingDAO dao = new tblPaintingDAO();
+            dao.searchPainting(description, true);
+            List<tblPaintingDTO> result =  dao.getPainting();
+            url = PAITING_PAGE;
+            request.setAttribute("SEARCH_VALUE", result);
+            
+        }catch(SQLException ex){
+            log("SQL "+ ex.getMessage());
+        }catch(ClassNotFoundException ex){
+            log("Class Not Found"+ ex.getMessage());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
