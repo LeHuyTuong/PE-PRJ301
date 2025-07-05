@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        Welcome, ${sessionScope.USER_INFO.fullName}
+        <form action="MainController">
+            <input type="submit" value="Logout" name="action" />
+        </form>
     </body>
 </html>
