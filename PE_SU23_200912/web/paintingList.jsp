@@ -26,42 +26,49 @@
         <c:if test="${not empty searchValue}">
             <c:set var="result" value="${requestScope.SEARCH_VALUE}" />
             <c:if test="${not empty result}" >
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>id</th>
-                        <th>description</th>
-                        <th>height</th>
-                        <th>width</th>
-                        <th>price</th>
-                    </tr>
-                </thead>
-                <c:forEach var="dto" items="${result}" varStatus="counter" >
-                <tbody>
-                    <tr>
-                        <td>
-                            ${counter.count}
-                        </td>
-                        <td>
-                            ${dto.creator}
-                        </td>
-                        <td>
-                            ${dto.description}
-                        </td>
-                        <td>
-                            ${dto.height}
-                        </td>
-                        <td>
-                            ${dto.width}
-                        </td>
-                        <td>
-                            ${dto.price}
-                        </td>
-                    </tr>
-                </tbody>
-                </c:forEach>
-            </table>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>id</th>
+                            <th>description</th>
+                            <th>height</th>
+                            <th>width</th>
+                            <th>price</th>
+                        </tr>
+                    </thead>
+                    <c:forEach var="dto" items="${result}" varStatus="counter" >
+                        <form action="MainController" method="POST">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ${counter.count}
+                                    </td>
+                                    <td>
+                                        ${dto.creator}
+                                    </td>
+                                    <td>
+                                        ${dto.description}
+                                    </td>
+                                    <td>
+                                        ${dto.height}
+                                    </td>
+                                    <td>
+                                        ${dto.width}
+                                    </td>
+                                    <td>
+                                        ${dto.price}
+                                    </td>
+                                    <td>                            
+                                        <input type="hidden" name="txtID" value="${dto.id}" />
+                                        <input type="hidden" name="lastSearchValue" value="${searchValue}" />
+                                        <input type="submit" value="Delete" name="action" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </form>
+                    </c:forEach>
+                </table>
             </c:if>
             <c:if test="${empty result}">
                 No recording
