@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import pe.model.tblUsersCreateErr;
 import pe.model.tblUsersDAO;
 import pe.model.tblUsersDTO;
 
@@ -38,6 +39,7 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String userID = request.getParameter("txtUserID");
         String password = request.getParameter("txtPassword");
+        tblUsersCreateErr errors = new tblUsersCreateErr();
         String url = LOGIN_PAGE;
         try  {
             tblUsersDAO dao = new tblUsersDAO();
@@ -46,6 +48,9 @@ public class LoginServlet extends HttpServlet {
                 url  = PAITING_PAGE;
                 HttpSession session = request.getSession();
                 session.setAttribute("USER_INFO", result);
+            }else{
+                errors.setPasswordNotCorrect("userID or Password is not correct");
+                request.setAttribute("CREATE_ERR", errors);
             }
         }catch(SQLException ex){
             log("SQL "+ ex.getMessage());

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author USER
  */
 public class tblUsersCreateErr implements Serializable{
-    private String PasswordNotCorrect;
+    private String passwordNotCorrect;
 
     public tblUsersCreateErr() {
     }
@@ -20,14 +20,14 @@ public class tblUsersCreateErr implements Serializable{
      * @return the PasswordNotCorrect
      */
     public String getPasswordNotCorrect() {
-        return PasswordNotCorrect;
+        return passwordNotCorrect;
     }
 
     /**
      * @param PasswordNotCorrect the PasswordNotCorrect to set
      */
-    public void setPasswordNotCorrect(String PasswordNotCorrect) {
-        this.PasswordNotCorrect = PasswordNotCorrect;
+    public void setPasswordNotCorrect(String passwordNotCorrect) {
+        this.passwordNotCorrect = passwordNotCorrect;
     }
     
 }
