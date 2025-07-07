@@ -26,7 +26,7 @@ import pe.model.tblUsersDTO;
 @WebServlet(name="LoginServlet", urlPatterns={"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
    private final String LOGIN_PAGE = "login.jsp";
-   private final String ITEM_PAGE = "itemList.jsp";
+   private final String ITEM_PAGE = "itemsList.jsp";
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
