@@ -34,39 +34,44 @@
                         </tr>
                     </thead>
                     <c:forEach var="dto" items="${result}" varStatus="counter">       
-                    <tbody>
-                        <tr>
-                            <td>
-                                ${counter.count}
-                            </td>
-                            <td>
-                                ${dto.itemID}
-                            </td>
-                            <td>
-                                ${dto.name}
-                            </td>
-                            <td>
-                                ${dto.price}
-                            </td>
-                            <td>
-                                ${dto.quantity}
-                            </td>
-                            <td>
-                                ${dto.price * dto.quantity}
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
+                        <tbody>
+                        <form action="MainController" method="POST">
+
+                            <tr>
+                                <td>
+                                    ${counter.count}
+                                </td>
+                                <td>
+                                    ${dto.itemID}
+                                    <input type="hidden" name="txtItemID" value="${dto.itemID}" />
+                                </td>
+                                <td>
+                                    ${dto.name}
+                                </td>
+                                <td>
+                                    ${dto.price}
+                                </td>
+                                <td>
+                                    ${dto.quantity}
+                                </td>
+                                <td>
+                                    ${dto.price * dto.quantity}
+                                </td>
+                                <td>
+                                    <input type="hidden" name="lastValue1" value="${searchValue1}" />
+                                    <input type="hidden" name="lastValue2" value="${searchValue2}" />
+                                    <input type="submit" value="Remove" name="action" />
+                                </td>
+                            </tr>
+                        </form>
                     </tbody>
-                    </c:forEach>
-                </table>
-
-            </c:if>
-            <c:if test="${empty result}">
-                No recording
-            </c:if>
+                </c:forEach>
+            </table>
         </c:if>
+        <c:if test="${empty result}">
+            No recording
+        </c:if>
+    </c:if>
 
-    </body>
+</body>
 </html>
