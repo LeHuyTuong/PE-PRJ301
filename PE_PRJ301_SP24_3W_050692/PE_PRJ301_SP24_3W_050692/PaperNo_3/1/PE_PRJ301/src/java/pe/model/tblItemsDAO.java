@@ -42,13 +42,13 @@ public class tblItemsDAO implements Serializable {
                 stm.setString(1, value1);
                 stm.setString(2, value2);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     String id = rs.getString("id");
                     String name = rs.getString("name");
                     double price = rs.getDouble("price");
                     int quantity = rs.getInt("quantity");
                     result = new tblItemsDTO(id, name, price, quantity);
-                    if(this.items == null){
+                    if (this.items == null) {
                         this.items = new ArrayList<>();
                     }
                     this.items.add(result);
@@ -65,6 +65,34 @@ public class tblItemsDAO implements Serializable {
                 con.close();
             }
         }
-
+    }
+    
+    public boolean removeItems(String itemID)
+            throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String query = "Delete " 
+                        + "From tblItems "
+                        + "Where id = ? ";
+                stm = con.prepareStatement(query);
+                stm.setString(1, itemID);
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0 ){
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
     }
 }

@@ -17,6 +17,7 @@ public class MainController extends HttpServlet {
     private final String LOGIN_CONTROLLER = "LoginServlet";
     private final String LOGOUT_CONTROLLER = "LogoutServlet";
     private final String SEARCH_CONTROLLER ="SearchServlet";
+    private final String REMOVE_CONTROLLER ="RemoveServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,6 +37,10 @@ public class MainController extends HttpServlet {
                         break;
                     case"Search":
                         url = SEARCH_CONTROLLER;
+                        break;
+                    case "Remove":
+                        url = REMOVE_CONTROLLER;
+                        break;
                     default:
                         throw new AssertionError();
                 }
