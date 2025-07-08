@@ -20,6 +20,8 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_PAGE = "login.jsp";
     private final String LOGIN_CONTROLLER = "LoginServlet";
     private final String LOGOUT_CONTROLLER ="LogoutServlet";
+    private final String SEARCH_NAME_VALUE_CONTROLLER ="SearchNameValueServlet";
+    private final String DELETE_CONTROLLER ="DeleteServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,6 +38,12 @@ public class MainController extends HttpServlet {
                         break;
                     case "Logout":
                         url = LOGOUT_CONTROLLER;
+                        break;
+                    case "Search":
+                        url = SEARCH_NAME_VALUE_CONTROLLER;
+                        break;
+                    case "Delete":
+                        url = DELETE_CONTROLLER;
                         break;
                     default:
                         throw new AssertionError();
