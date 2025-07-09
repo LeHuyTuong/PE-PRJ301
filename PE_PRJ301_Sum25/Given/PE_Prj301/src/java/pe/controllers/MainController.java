@@ -13,47 +13,39 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author hd
+ * @author Computing Fundamental - HCM Campus
  */
 public class MainController extends HttpServlet {
 
-    private static final String LOGIN_PAGE = "login.jsp";
-    private final String LOGIN_CONTROLLER = "LoginServlet";
-    private final String LOGOUT_CONTROLLER ="LogoutServlet";
-    private final String SEARCH_NAME_VALUE_CONTROLLER ="SearchNameValueServlet";
-    private final String DELETE_CONTROLLER ="DeleteServlet";
+    private static final String WELCOME="login.jsp";
+    private final String LOGIN_CONTROLLER ="LoginServlet";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = LOGIN_PAGE;
+        String url= WELCOME;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = LOGIN_PAGE;
+            String action= request.getParameter("action");
+            //-----            your code here   --------------------------------
+            switch (action) {
+                case "Login":
+                    url = LOGIN_CONTROLLER;
+                    break;
+                default:
+                    throw new AssertionError();
             }
-            else{
-                switch(action) {
-                    case "Login" :
-                        url = LOGIN_CONTROLLER;
-                        break;
-                    case "Logout":
-                        url = LOGOUT_CONTROLLER;
-                        break;
-                    case "Search":
-                        url = SEARCH_NAME_VALUE_CONTROLLER;
-                        break;
-                    case "Delete":
-                        url = DELETE_CONTROLLER;
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-            }
-//            your code here
-
+            //-----            your code here   --------------------------------
         } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
-        } finally {
+            log("error at MainController: "+ e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
