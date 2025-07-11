@@ -70,7 +70,7 @@ public class TblWatchDAO implements Serializable {
             }
         }
     }
-    public boolean updateAccount(int id, String description, int price) throws
+    public boolean updateAccount(int id, String description, double price, int quantity) throws
             ClassNotFoundException, SQLException {
         boolean result = false;
         Connection con = null;
@@ -78,14 +78,22 @@ public class TblWatchDAO implements Serializable {
         try {
             con = DbUtils.getConnection();
             if (con != null) {
-                String query = "UPDATE tbl_Watch ("
-                        + "id, )";
+                String query = "UPDATE tbl_Watch "
+                        + "Set description = ? ,"
+                        + "price = ? , "
+                        + "quantity = ? "
+                        + "Where id = ?";
                 stm = con.prepareStatement(query);
- 
-                
+                stm.setString(1, description);
+                stm.setDouble(2, price);
+                stm.setInt(3, quantity);
+                stm.setInt(4, id);
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0 ){
+                    result = true;
+                }
             }
         } finally {
-
             if (stm != null) {
                 stm.close();
             }

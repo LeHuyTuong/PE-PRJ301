@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/controllers/LogoutServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblUsersDTO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblFashionDAO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblUsersCreateErr.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/controllers/UpdateServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/controllers/MainController.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblFashionCreateErr.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/controllers/LoginServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblUsersDAO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/model/tblFashionDTO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/controllers/SearchServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/web/fashionList.jsp</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/src/java/pe/utils/DBUtils.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/web/error.jsp</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_SU23_109623/PRJ301/PRJ301_PE_SU23_109623/PaperNo_1/1/PE_PRJ301_1/web/login.jsp</file>
+        </group>
+    </open-files>
+</project-private>
