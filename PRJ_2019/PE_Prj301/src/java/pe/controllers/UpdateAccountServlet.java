@@ -4,6 +4,7 @@
  */
 package pe.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
+import pe.model.TblWatchDAO;
 
 /**
  *
@@ -19,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name = "UpdateAccountServlet", urlPatterns = {"/UpdateAccountServlet"})
 public class UpdateAccountServlet extends HttpServlet {
 
-    private final String ERROR_PAGE = "errorin.html";
+    private final String SEARCH_PAGE = "search.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +36,38 @@ public class UpdateAccountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("txtId");
-        String description = request.getParameter("txtDescription");
-            String price = request.getParameter("txtPrice");
-        String quantity = request.getParameter("txtQuantity");
-        String searchValue = request.getParameter("txtSearchValue");
+        String idStr = request.getParameter("pk");
+        int id = Integer.parseInt(idStr);
+        String description = request.getParameter("dtoDescription");
+        String priceStr = request.getParameter("dtoPrice");
+        double price = Double.parseDouble(priceStr);
+        String quantityStr = request.getParameter("dtoQuantity");
+        int quantity = Integer.parseInt(quantityStr);
+        String minValue = request.getParameter("lastMinValue");
+        String maxValue = request.getParameter("lastMaxValue");
+        String url = SEARCH_PAGE;
+        
+        System.out.println("Hello da co param ne " + price + " " + description + " "+  quantity);
         try {
-
+            TblWatchDAO dao = new TblWatchDAO();
+            boolean result = dao.updateAccount(id, description, price, quantity);
+            System.out.println("Hello xong result rooi ne " + result);
+            if (result == true) {
+                url = "MainController"
+                        + "?action=Search"
+                        + "&txtMin=" + minValue
+                        + "&txtMax=" + maxValue;
+                System.out.println("Hello vao url rewriting roi ne ");
+            }
+        } catch (NumberFormatException ex) {
+            log("Number Format " + ex.getMessage());
+        } catch (SQLException ex) {
+            log("SQL" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            log("Class Not Found " + ex.getMessage());
         } finally {
-
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

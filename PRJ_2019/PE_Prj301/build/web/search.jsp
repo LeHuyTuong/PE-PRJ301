@@ -61,10 +61,15 @@
                                     <c:url var="editLink" value="MainController">
                                         <c:param name="action" value="Update" />
                                         <c:param name="pk" value="${dto.id}" />
-                                        <c:param name="lastSearchValue" value="${searchValue}" />
+                                        <c:param name="dtoDescription" value="${dto.description}" />
+                                        <c:param name="dtoPrice" value="${dto.price}" />
+                                        <c:param name="dtoQuantity" value="${dto.quantity}" />
+                                        <c:param name="lastMinValue" value="${param.txtMin}" />
+                                        <c:param name="lastMaxValue" value="${param.txtMax}" />
                                     </c:url>
-                                    <input type="hidden" name="txtSearchValue" value="${searchValue}" />
-                                    <a href="editLink">Edit Link</a>
+                                    <input type="hidden" name="lastMinValue" value="${param.txtMin}" />
+                                    <input type="hidden" name="lastMaxValue" value="${param.txtMax}" />
+                                    <a href="${editLink}">Edit Link</a>
                                 </td>
 
                             </tr>
@@ -78,4 +83,3 @@
         </c:if>
     </c:if>
 </body>
-</html>

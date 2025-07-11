@@ -2,27 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/model/TblUserDAO.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/LogoutAccountServlet.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/utils/DbUtils.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/error.html</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/welcome.jsp</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/UpdateAccountServlet.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/model/TblUserDTO.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/MainController.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/model/TblWatchDTO.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/CheckAccountServlet.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/search.jsp</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/SearchAccountServlet.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/errorin.html</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/scripts/jquery.min.js</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/styles/bootstrap.min.css</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/scripts/bootstrap.min.js</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/model/TblWatchDAO.java</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/web/login.jsp</file>
-            <file>file:/D:/Dowload/Given_Watch/Given_Watch/PE_Prj301/src/java/pe/controllers/LoginAccountServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -42,9 +42,10 @@ public class LoginAccountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String username = request.getParameter("txtUsername");
         String passwordStr = request.getParameter("txtPassword");
-        int password = Integer.parseInt(passwordStr);
+        
         String url = ERROR_PAGE;
         try {
+            int password = Integer.parseInt(passwordStr);
             TblUserDAO dao = new TblUserDAO();
             TblUserDTO result = dao.checkLogin(username, password, 1);
             if (result != null) {
