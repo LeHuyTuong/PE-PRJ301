@@ -12,6 +12,7 @@ public class MainController extends HttpServlet {
     private final String LOGIN_PAGE = "LoginSerlvet";
     private final String CHECK_ACCOUNT = "CheckAccountSerlvet";
     private final String LOGOUT_ACCOUNT = "LogoutServlet";
+    private final String CREATE_ACCOUNT = "CreateServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -28,7 +29,9 @@ public class MainController extends HttpServlet {
                     case"Logout":
                         url = LOGOUT_ACCOUNT;
                         break;
-                    
+                    case "Create":
+                        url = CREATE_ACCOUNT;
+                        break;
                     default:
                         throw new AssertionError();
                 }

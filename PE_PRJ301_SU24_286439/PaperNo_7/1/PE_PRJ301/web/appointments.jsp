@@ -13,7 +13,11 @@
         <form action="MainController">
             <input type="submit" value="Logout" name="action" />
         </form>
-        <a href="create.jsp">Link Create</a>
+        <c:set var="user" value="${sessionScope.USER_INFO}"/>
+        <c:if test="${user.roleDB == 'super'}" >
+            <a href="create.jsp">Link Create</a>
+        </c:if> 
+
         <c:set var="items" value="${requestScope.VALUE}" />
         <c:if test="${not empty items}" >
             <table border="1">
