@@ -14,9 +14,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.List;
 import pe.account.AccountCreateErr;
 import pe.account.AccountDAO;
 import pe.account.AccountDTO;
+import pe.appointment.AppointmentDAO;
+import pe.appointment.AppointmentDTO;
 
 /**
  *
@@ -48,6 +51,10 @@ public class LoginSerlvet extends HttpServlet {
         try {
             AccountDAO dao = new AccountDAO();
             AccountDTO result = dao.checkLogin(username, password);
+            AppointmentDAO adao = new AppointmentDAO();
+            adao.setAppointment();
+            List<AppointmentDTO> dtoResult = adao.getItems();
+            request.setAttribute("VALUE",dtoResult);
             if (result != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("USER_INFO", result);
