@@ -6,10 +6,10 @@
 package pe.controllers;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
-
+    private static final String LOGIN_ACCOUNT ="LoginServlet";
+    private static final String CREATE_ACCOUNT ="CreateServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -27,9 +28,15 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = LOGIN_PAGE;
+            }else{
+                switch (action) {
+                    case "Login":
+                        url = LOGIN_ACCOUNT;
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
-//            your code here
-
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {

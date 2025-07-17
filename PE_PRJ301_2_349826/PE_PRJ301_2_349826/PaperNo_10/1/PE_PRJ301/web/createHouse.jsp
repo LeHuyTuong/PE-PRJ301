@@ -13,7 +13,7 @@
         <title>House List</title>
     </head>
     <body>
+        Welcome, ${sessionScope.USER_INFO.name}
         
-            
     </body>
 </html>
