@@ -20,6 +20,7 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_PAGE = "login.jsp";
     private static final String LOGIN_ACCOUNT ="LoginServlet";
     private static final String CREATE_ACCOUNT ="CreateServlet";
+    private static final String LOGOUT_ACCOUNT ="LogoutServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -32,6 +33,12 @@ public class MainController extends HttpServlet {
                 switch (action) {
                     case "Login":
                         url = LOGIN_ACCOUNT;
+                        break;
+                    case "Logout":
+                        url = LOGOUT_ACCOUNT;
+                        break;
+                    case "Create":
+                        url = CREATE_ACCOUNT;
                         break;
                     default:
                         throw new AssertionError();

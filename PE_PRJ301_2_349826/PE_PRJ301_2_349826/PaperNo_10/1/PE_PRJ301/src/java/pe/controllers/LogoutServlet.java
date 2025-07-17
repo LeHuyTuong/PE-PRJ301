@@ -4,7 +4,6 @@
  */
 package pe.controllers;
 
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,19 +12,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import pe.model.TblUser;
-import pe.model.TblUserCreateErr;
-import pe.model.UserBLI;
-import pe.model.UserBLO;
 
 /**
  *
  * @author USER
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
-    private final String CREATE_PAGE = "createHouse.jsp";
     private final String ERROR_PAGE = "login.jsp";
 
     /**
@@ -40,28 +34,16 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userID = request.getParameter("txtUserID");
-        String password = request.getParameter("txtPassword");
-        TblUserCreateErr errors = new TblUserCreateErr();
         String url = ERROR_PAGE;
+        HttpSession session = request.getSession();
+        
         try {
-            UserBLI blo = new UserBLO();
-            TblUser result = blo.checkLogin(userID, password);
-            System.out.println(userID);
-            System.out.println(password);
-            System.out.println(result);
-            if (result != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER_INFO", result);
-                url = CREATE_PAGE;
-            } else {
-                errors.setNotMatch("Incorrect UserID or Password");
-                request.setAttribute("CREATE_ERRORS", errors);
+            if(session != null){
+                session.invalidate();
             }
-
-        } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            url = ERROR_PAGE;
+        }finally{
+            response.sendRedirect(url);
         }
     }
 

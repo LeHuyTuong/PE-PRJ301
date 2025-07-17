@@ -12,18 +12,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import pe.model.TblUser;
-import pe.model.TblUserCreateErr;
-import pe.model.UserBLI;
-import pe.model.UserBLO;
+import pe.model.HouseBLI;
+import pe.model.HouseBLO;
+import pe.model.TblHouse;
+import pe.model.TblHouseCreateErr;
 
 /**
  *
  * @author USER
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "CreateServlet", urlPatterns = {"/CreateServlet"})
+public class CreateServlet extends HttpServlet {
 
     private final String CREATE_PAGE = "createHouse.jsp";
     private final String ERROR_PAGE = "login.jsp";
@@ -40,25 +39,53 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userID = request.getParameter("txtUserID");
-        String password = request.getParameter("txtPassword");
-        TblUserCreateErr errors = new TblUserCreateErr();
-        String url = ERROR_PAGE;
+        String id = request.getParameter("txtID");
+        String name = request.getParameter("txtName");
+        String description = request.getParameter("txtDescription");
+        String priceStr = request.getParameter("txtPrice");
+        String sizeStr = request.getParameter("txtSize");
+        TblHouseCreateErr errors = new TblHouseCreateErr();
+        String url = CREATE_PAGE;
+        boolean foundErr = false;
         try {
-            UserBLI blo = new UserBLO();
-            TblUser result = blo.checkLogin(userID, password);
-            System.out.println(userID);
-            System.out.println(password);
-            System.out.println(result);
-            if (result != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER_INFO", result);
-                url = CREATE_PAGE;
-            } else {
-                errors.setNotMatch("Incorrect UserID or Password");
-                request.setAttribute("CREATE_ERRORS", errors);
+            if (id.length() != 5) {
+                errors.setNotFormat("Please try with format H-XXX X is a number");
+                foundErr = true;
             }
 
+            double price = Double.parseDouble(priceStr);
+            if ((price < 0 || price > 500)) {
+                errors.setDataType("Lmao");
+                foundErr = true;
+            }
+            double size = Double.parseDouble(sizeStr);
+            if ((size < 0 || size > 500)) {
+                errors.setDataType("Lmao");
+                foundErr = true;
+            }
+            if (foundErr) {
+                request.setAttribute("ERROR", errors);
+            } else {
+                HouseBLI blo = new HouseBLO();
+                TblHouse house = new TblHouse(id, name, description, price, size, false);
+                boolean result = blo.createHouse(house);
+                if (result == true) {
+                    url = ERROR_PAGE;
+                    request.setAttribute("SUCCESS", result);
+                }
+            }
+        } catch (NumberFormatException ex) {
+            String msg = ex.getMessage();
+            log("Number Format Exception" + msg);
+            errors.setDataType("data format not true, please enter ex 2.5 or 2.0");
+            request.setAttribute("ERROR", errors);
+        } catch (IllegalArgumentException ex) {
+            String msg = ex.getMessage();
+            log("Illegal " + msg);
+            if (msg.contains("duplicate")) {
+                errors.setDuplicateID(id + "duplicate");
+                request.setAttribute("ERROR", errors);
+            }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
