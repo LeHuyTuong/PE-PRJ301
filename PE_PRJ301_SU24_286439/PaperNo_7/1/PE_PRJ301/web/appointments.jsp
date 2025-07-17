@@ -17,7 +17,9 @@
         <c:if test="${user.roleDB == 'super'}" >
             <a href="create.jsp">Link Create</a>
         </c:if> 
-
+        <c:if test="${empty user}">
+            <c:redirect url="login.jsp"/>
+        </c:if>
         <c:set var="items" value="${requestScope.VALUE}" />
         <c:if test="${not empty items}" >
             <table border="1">

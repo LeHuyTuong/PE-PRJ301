@@ -76,7 +76,7 @@ public class AppointmentDAO implements Serializable {
                         + " account, partnerPhone, partnerName, timeToMeet, place, expense, note "
                         + ") VALUES ("
                         + " ?, ?, ?, ?, ?, ?, ?)";
-                stm = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                stm = con.prepareStatement(query);
 
                 if (item.getAccount().equals("super")) {
                     stm.setString(1, "admin");
@@ -92,10 +92,6 @@ public class AppointmentDAO implements Serializable {
                 int effectRows = stm.executeUpdate();
                 if(effectRows > 0){
                     result = true;
-                    rs = stm.getGeneratedKeys();
-                    if(rs.next()){
-                        item.setIdApp(rs.getInt(1));
-                    }
                 }
             }
         } finally {

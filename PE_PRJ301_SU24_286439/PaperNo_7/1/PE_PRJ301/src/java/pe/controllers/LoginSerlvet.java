@@ -63,11 +63,13 @@ public class LoginSerlvet extends HttpServlet {
                 errors.setErrorsPass("Incorrect account or Password");
                 request.setAttribute("CREATE_ERR", errors);
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             log("SQL" + ex.getMessage());
         } catch (ClassNotFoundException ex) {
             log("Class Not Found " + ex.getMessage());
-        } finally {
+        }
+        finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
