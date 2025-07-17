@@ -1,42 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pe.controllers;
 
 import java.io.IOException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author hd
+ */
 public class MainController extends HttpServlet {
 
-    private static final String ERROR = "login.jsp";
-    private final String LOGIN_PAGE = "LoginSerlvet";
-    private final String CHECK_ACCOUNT = "CheckAccountSerlvet";
-    private final String LOGOUT_ACCOUNT = "LogoutServlet";
-    private final String CREATE_ACCOUNT = "CreateServlet";
+    private static final String LOGIN_PAGE = "login.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        String button = request.getParameter("action");
+        String url = LOGIN_PAGE;
         try {
-            if(button == null){
-                url = ERROR;
-            }else{
-                switch (button) {
-                    case "Login":
-                        url = LOGIN_PAGE;
-                        break;
-                    case"Logout":
-                        url = LOGOUT_ACCOUNT;
-                        break;
-                    case "Create":
-                        url = CREATE_ACCOUNT;
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+            String action = request.getParameter("action");
+            if (action == null) {
+                url = LOGIN_PAGE;
             }
-            
+//            your code here
+
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
