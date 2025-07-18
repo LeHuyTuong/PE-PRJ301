@@ -13,7 +13,7 @@
         <title>Admin Page</title>
     </head>
     <body>
-        
+        Welcome ,${sessionScope.USER_INFO.fullName}
             
     </body>
 </html>

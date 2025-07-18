@@ -12,7 +12,12 @@
         <title>Login Page</title>
     </head>
     <body>
-        <!--your code here-->
+        <form action="MainController" method="POST">
+            userID <input type="text" name="txtUserID" value="" /><br/>
+            Password <input type="password" name="txtPassword" value="" /><br/>
+            <input type="submit" value="Login" name="action" />
+            <input type="reset" value="Reset" />
+        </form>
     </body>
     
 </html>

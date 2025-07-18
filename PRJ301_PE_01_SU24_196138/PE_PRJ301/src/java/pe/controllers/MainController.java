@@ -18,6 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
+    private static final String SEARCH_PAGE = "furnitureList.jsp";
+    private static final String LOGIN_ACCOUNT = "LoginServlet";
+    private static final String SEARCH_ITEM = "SearchServlet";
+    private static final String LOGOUT_ACCOUNT = "LogoutServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +33,15 @@ public class MainController extends HttpServlet {
                 url = LOGIN_PAGE;
             }
 //            your code here
-
+            else{
+                switch (action) {
+                    case "Login":
+                        url = LOGIN_ACCOUNT;
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
