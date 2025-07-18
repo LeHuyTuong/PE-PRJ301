@@ -18,7 +18,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String LOGIN_PAGE = "login.jsp";
-    private static final String SEARCH_PAGE = "furnitureList.jsp";
     private static final String LOGIN_ACCOUNT = "LoginServlet";
     private static final String SEARCH_ITEM = "SearchServlet";
     private static final String LOGOUT_ACCOUNT = "LogoutServlet";
@@ -37,6 +36,12 @@ public class MainController extends HttpServlet {
                 switch (action) {
                     case "Login":
                         url = LOGIN_ACCOUNT;
+                        break;
+                    case "Logout":
+                        url = LOGOUT_ACCOUNT;
+                        break;
+                    case "Search":
+                        url = SEARCH_ITEM;
                         break;
                     default:
                         throw new AssertionError();

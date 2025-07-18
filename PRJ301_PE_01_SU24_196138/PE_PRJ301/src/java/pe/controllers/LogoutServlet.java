@@ -5,7 +5,6 @@
 
 package pe.controllers;
 
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,18 +13,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.sql.SQLException;
-import pe.model.tblUsersDAO;
-import pe.model.tblUsersDTO;
 
 /**
  *
  * @author USER
  */
-@WebServlet(name="LoginServlet", urlPatterns={"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-   private static final String ERROR_PAGE = "login.jsp";
-    private static final String SEARCH_PAGE = "furnitureList.jsp";
+@WebServlet(name="LogoutServlet", urlPatterns={"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
+      private static final String ERROR_PAGE = "login.jsp";
+
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -36,28 +32,15 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userID = request.getParameter("txtUserID");
-        String password = request.getParameter("txtPassword");
         String url = ERROR_PAGE;
-        try {
-            tblUsersDAO dao = new tblUsersDAO();
-            tblUsersDTO result = dao.checkLogin(userID, password);
-            if(result != null){
-                url = SEARCH_PAGE;
-                HttpSession session = request.getSession();
-                session.setAttribute("USER_INFO", result);
-            }else{
-                request.setAttribute("CREATE_ERROR", "Incorrect UserID or Password");
-            }
-        }
-        catch (SQLException ex) {
-            log("SQL" + ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            log("Class Not Found " + ex.getMessage());
-        }
-        finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+        HttpSession session = request.getSession();
+        try  {
+           if(session != null){
+               session.invalidate();
+           }
+           url = ERROR_PAGE;
+        }finally{
+            response.sendRedirect(url);
         }
     } 
 

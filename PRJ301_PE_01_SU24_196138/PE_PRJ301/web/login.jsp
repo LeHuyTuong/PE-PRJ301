@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,6 +19,10 @@
             <input type="submit" value="Login" name="action" />
             <input type="reset" value="Reset" />
         </form>
+        <c:set var="errors" value="${requestScope.CREATE_ERROR}"/>
+        <c:if test="${not empty errors}">
+            ${errors}
+        </c:if>
     </body>
     
 </html>
