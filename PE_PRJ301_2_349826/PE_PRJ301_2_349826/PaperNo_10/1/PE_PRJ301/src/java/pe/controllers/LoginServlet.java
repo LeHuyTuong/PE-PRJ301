@@ -46,6 +46,8 @@ public class LoginServlet extends HttpServlet {
         String url = ERROR_PAGE;
         try {
             UserBLI blo = new UserBLO();
+            System.out.println(userID);
+            System.out.println(password);
             TblUser result = blo.checkLogin(userID, password);
             System.out.println(userID);
             System.out.println(password);
@@ -56,7 +58,9 @@ public class LoginServlet extends HttpServlet {
                 url = CREATE_PAGE;
             } else {
                 errors.setNotMatch("Incorrect UserID or Password");
+                System.out.println(errors.getNotMatch());
                 request.setAttribute("CREATE_ERRORS", errors);
+                System.out.println(errors.getNotMatch());
             }
 
         } finally {

@@ -4,6 +4,7 @@
  */
 package pe.model;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -14,7 +15,7 @@ import javax.persistence.Persistence;
  *
  * @author USER
  */
-public class HouseBLO implements HouseBLI {
+public class HouseBLO implements HouseBLI , Serializable {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("PE_PRJ301PU");
 

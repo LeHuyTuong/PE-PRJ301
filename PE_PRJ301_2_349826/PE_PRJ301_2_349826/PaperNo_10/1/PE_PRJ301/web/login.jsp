@@ -19,6 +19,7 @@
             <input type="submit" value="Login" name="action" />
         </form>
         <c:set var="errors" value="${requestScope.CREATE_ERRORS}" />
+         ${errors}
         <c:if test="${not empty errors.notMatch}" >
             ${errors.notMatch}
         </c:if>
