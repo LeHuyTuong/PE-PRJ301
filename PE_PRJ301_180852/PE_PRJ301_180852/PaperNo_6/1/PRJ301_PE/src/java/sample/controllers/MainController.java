@@ -19,7 +19,7 @@ public class MainController extends HttpServlet {
 
     private static final String WELCOME="login.jsp";
     private static final String LOGIN_ACCOUNT = "LoginServlet";
-    private static final String SEARCH_ITEM = "SearchServlet";
+    private static final String SEARCH_ROOM = "SearchServlet";
     private static final String LOGOUT_ACCOUNT = "LogoutServlet";
     private static final String Delete_ACCOUNT = "DeleteServlet";
     
@@ -37,6 +37,12 @@ public class MainController extends HttpServlet {
                 switch (action) {
                     case "Login":
                         url = LOGIN_ACCOUNT;
+                        break;
+                    case "Logout":
+                        url = LOGOUT_ACCOUNT;
+                        break;
+                    case "Search":
+                        url = SEARCH_ROOM;
                         break;
                     default:
                         throw new AssertionError();
