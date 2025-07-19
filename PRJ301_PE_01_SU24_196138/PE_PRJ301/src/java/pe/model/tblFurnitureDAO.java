@@ -69,4 +69,34 @@ public class tblFurnitureDAO implements Serializable{
             }
         }
     }
+    public boolean updateAccount(String username)
+            throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String query = "Update tblFurniture "
+                        + "SET status = ? "
+                        + "Where id = ?";                
+                
+                stm = con.prepareStatement(query);
+                stm.setBoolean(1, false);
+                stm.setString(2, username);
+                int effectRows = stm.executeUpdate();                
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }

@@ -21,7 +21,7 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_ACCOUNT = "LoginServlet";
     private static final String SEARCH_ITEM = "SearchServlet";
     private static final String LOGOUT_ACCOUNT = "LogoutServlet";
-
+    private static final String DELETE_ACCOUNT = "DeleteServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,10 +43,13 @@ public class MainController extends HttpServlet {
                     case "Search":
                         url = SEARCH_ITEM;
                         break;
+                    case "Delete":
+                        url = DELETE_ACCOUNT;
+                        break;
                     default:
                         throw new AssertionError();
                 }
-            }
+            }   
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {

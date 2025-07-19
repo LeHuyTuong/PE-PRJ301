@@ -31,9 +31,8 @@
         <c:if test="${not empty searchValue}" >
             ${searchValue}
             <c:set var="result" value="${requestScope.SEARCH_VALUE}"/>
-            ${result}   
             <c:if test="${not empty result}">
-                ${result}
+
                 <table border="1">
                     <thead>
                         <tr>
@@ -45,26 +44,39 @@
                             <th>dimensions</th>
                             <th>material</th>
                             <th>status</th>
+                            <th>delete</th>
                         </tr>
                     </thead>
                     <c:forEach var="dto" items="${result}" varStatus="counter">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    ${counter.count}
-                                </td>
-                                <td>
-                                    ${dto.id}
-                                </td>
-                                <td>${dto.name}</td>
-                                <td>${dto.description}</td>
-                                <td>${dto.price}</td>
-                                <td>${dto.dimensions}</td>
-                                <td>${dto.material}</td>
-                                <td>${dto.status}</td>
-                            </tr>
-                        </tbody>
+                        <c:if test="${dto.status == true}">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ${counter.count}
+                                    </td>
+                                    <td>
+                                        ${dto.id}
+                                    </td>
+                                    <td>${dto.name}</td>
+                                    <td>${dto.description}</td>
+                                    <td>${dto.price}</td>
+                                    <td>${dto.dimensions}</td>
+                                    <td>${dto.material}</td>
+                                    <td>${dto.status}</td>
+                                    <td>
+                                        <c:url var="DeleteLink" value="MainController" >
+                                            <c:param name="action" value="Delete" />
+                                            <c:param name="pk" value="${dto.id}" />
+                                            <c:param name="txtStatus" value="${dto.status}" />
+                                            <c:param name="lastSearchValue" value="${searchValue}" />
+                                        </c:url> 
+                                        <a href="${DeleteLink}">Delete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </c:if>
                     </c:forEach>
+
                 </table>
 
             </c:if>
