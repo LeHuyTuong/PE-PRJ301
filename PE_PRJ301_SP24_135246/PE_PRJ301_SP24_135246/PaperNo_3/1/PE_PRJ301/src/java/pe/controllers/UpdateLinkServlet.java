@@ -1,64 +1,47 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package pe.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author hd
+ * @author USER
  */
-public class MainController extends HttpServlet {
+@WebServlet(name = "UpdateLinkServlet", urlPatterns = {"/UpdateLinkServlet"})
+public class UpdateLinkServlet extends HttpServlet {
 
-    private static final String LOGIN_PAGE = "login.jsp";
-    private static final String LOGIN_ACCOUNT = "LoginServlet";
-    private static final String SEARCH_ITEM = "SearchServlet";
-    private static final String LOGOUT_ACCOUNT = "LogoutServlet";
-    private static final String UPDATE_ITEM = "UpdateServlet";
-    private static final String UPDATE_LINK = "UpdateLinkServlet";
-    
+    private final String SEARCH_PAGE = "currencyExchangeRate.jsp";
+    private final String EDIT_PAGE = "editCurrencyRate.jsp";
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = LOGIN_PAGE;
+        String code = request.getParameter("txtCode");
+        String url = EDIT_PAGE;
         try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                url = LOGIN_PAGE;
-            }
-//            your code here
-            else{
-                switch (action) {
-                    case "Login":
-                        url = LOGIN_ACCOUNT;
-                        break;
-                    case "Logout":
-                        url = LOGOUT_ACCOUNT;
-                        break;
-                    case "Search":
-                        url = SEARCH_ITEM;
-                        break;
-                    case "Update Rate":
-                        url = UPDATE_ITEM;
-                        break;
-                    case "Update":
-                        url = UPDATE_LINK;
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
-            }
-        } catch (Exception e) {
-            log("Error at MainController: " + e.toString());
+            request.setAttribute("Code", code);
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

@@ -73,7 +73,7 @@
             </a>
         </nav>
 
-        <form id="searchForm">
+        <form id="searchForm" action="MainController" >
             <label for="code">Code:</label>
             <input type="text" id="code" name="code" value="${param.code}">
             <label for="name">Name:</label>
@@ -93,19 +93,32 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Rate</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <c:forEach var="dto" items="${result}" >
-                        <tbody>
-                            <tr>
-                                <td>
-                                ${dto.code}
-                                </td>
-                                <td>${dto.name}r</td>
-                                <td>${dto.description}</td>
-                                <td>${dto.rate}</td>
-                            </tr>
-                        </tbody>
+                        <form action="MainController">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        ${dto.code}
+                                        <input type="hidden" name="txtCode" value="${dto.code}" />
+                                    </td>
+                                    <td>
+                                        ${dto.name}
+                                    </td>
+                                    <td>
+                                        ${dto.description}
+                                    </td>
+                                    <td>
+                                        ${dto.rate}
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Update" name="action"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </form>
                     </c:forEach>
                 </table>
             </c:if>
