@@ -3,18 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/model/tblFurnitureDTO.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/furnitureList.jsp</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/model/tblFurnitureDAO.java</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/MainController.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/login.jsp</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/error.jsp</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/model/tblUsersDTO.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/LogoutServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/DeleteServlet.java</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/model/tblUsersDAO.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/LoginServlet.java</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/login.jsp</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/model/tblFurnitureDTO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/web/furnitureList.jsp</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/LogoutServlet.java</file>
             <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/SearchServlet.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PRJ301_PE_01_SU24_196138/PE_PRJ301/src/java/pe/controllers/LoginServlet.java</file>
         </group>
     </open-files>
 </project-private>
