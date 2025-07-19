@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package pe.controllers;
 
 import jakarta.servlet.RequestDispatcher;
@@ -13,66 +14,56 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import pe.model.TblUser;
-import pe.model.TblUserCreateErr;
-import pe.model.UserBLI;
-import pe.model.UserBLO;
+import java.sql.SQLException;
+import pe.model.tblUsersDAO;
+import pe.model.tblUsersDTO;
 
 /**
  *
  * @author USER
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+@WebServlet(name="LoginServlet", urlPatterns={"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-
-    private final String CREATE_PAGE = "createHouse.jsp";
-    private final String ERROR_PAGE = "login.jsp";
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+   private static final String ERROR_PAGE = "login.jsp";
+    private static final String SEARCH_PAGE = "furnitureList.jsp";
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String userID = request.getParameter("txtUserID");
         String password = request.getParameter("txtPassword");
-        TblUserCreateErr errors = new TblUserCreateErr();
         String url = ERROR_PAGE;
         try {
-            UserBLI blo = new UserBLO();
-            System.out.println(userID);
-            System.out.println(password);
-            TblUser result = blo.checkLogin(userID, password);
-            System.out.println(userID);
-            System.out.println(password);
-            System.out.println(result);
-            if (result != null) {
+            tblUsersDAO dao = new tblUsersDAO();
+            tblUsersDTO result = dao.checkLogin(userID, password);
+            if(result != null){
+                url = SEARCH_PAGE;
                 HttpSession session = request.getSession();
                 session.setAttribute("USER_INFO", result);
-                url = CREATE_PAGE;
-            } else {
-                errors.setNotMatch("Incorrect UserID or Password");
-                System.out.println(errors.getNotMatch());
-                request.setAttribute("CREATE_ERRORS", errors);
-                System.out.println(errors.getNotMatch());
+            }else{
+                request.setAttribute("CREATE_ERROR", "Incorrect UserID or Password");
             }
-
-        } finally {
+        }
+        catch (SQLException ex) {
+            log("SQL" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            log("Class Not Found " + ex.getMessage());
+        }
+        finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -80,13 +71,12 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -94,13 +84,12 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

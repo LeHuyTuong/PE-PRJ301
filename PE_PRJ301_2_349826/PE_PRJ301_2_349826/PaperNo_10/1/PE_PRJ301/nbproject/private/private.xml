@@ -3,18 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/controllers/LoginServlet.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/TblUserCreateErr.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/controllers/MainController.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/web/META-INF/context.xml</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/web/createHouse.jsp</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/utils/DBUtils.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/TblUser.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/UserBLI.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/TblHouse.java</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/web/login.jsp</file>
-            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/UserBLO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/HouseBLO.java</file>
+            <file>file:/D:/Desktop/PE_PRJ/PE_PRJ301_2_349826/PE_PRJ301_2_349826/PaperNo_10/1/PE_PRJ301/src/java/pe/model/HouseBLI.java</file>
         </group>
     </open-files>
 </project-private>

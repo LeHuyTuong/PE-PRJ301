@@ -15,13 +15,13 @@
     <body>
         <form action="MainController" method="POST">
             userID <input type="text" name="txtUserID" value="" /><br/>
-            password <input type="password" name="txtPassword" value="" /><br/>
+            Password <input type="password" name="txtPassword" value="" /><br/>
             <input type="submit" value="Login" name="action" />
+            <input type="reset" value="Reset" />
         </form>
-        <c:set var="errors" value="${requestScope.CREATE_ERRORS}" />
-         ${errors}
-        <c:if test="${not empty errors.notMatch}" >
-            ${errors.notMatch}
+        <c:set var="errors" value="${requestScope.CREATE_ERROR}"/>
+        <c:if test="${not empty errors}">
+            ${errors}
         </c:if>
     </body>
     

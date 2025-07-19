@@ -69,9 +69,9 @@ public class CreateServlet extends HttpServlet {
                 HouseBLI blo = new HouseBLO();
                 TblHouse house = new TblHouse(id, name, description, price, size, false);
                 boolean result = blo.createHouse(house);
-                if (result == true) {
+                if (result) {
                     url = ERROR_PAGE;
-                    request.setAttribute("SUCCESS", result);
+                    request.setAttribute("SUCCESS", "SuccessFull");
                 }
             }
         } catch (NumberFormatException ex) {
