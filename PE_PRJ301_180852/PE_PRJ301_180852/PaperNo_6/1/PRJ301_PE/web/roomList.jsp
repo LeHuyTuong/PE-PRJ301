@@ -27,45 +27,64 @@
             name <input type="text" name="txtSearchValue" value="${param.txtSearchValue}" /> 
             <input type="submit" value="Search" name="action" />
         </form>
-            <c:set var="searchValue" value="${param.txtSearchValue}" />
-            <c:if test="${not empty searchValue}" >
-                <c:set var="value" value="${requestScope.SEARCH_VALUE}" />
-                <c:if test="${not empty value}" >
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>ID</th>
-                                <th>name</th>
-                                <th>description</th>
-                                <th>price</th>
-                                <th>area</th>
-                            </tr>
-                        </thead>
-                        <c:forEach var="dto" items="${value}" varStatus="counter">
+        <c:set var="searchValue" value="${param.txtSearchValue}" />
+        <c:if test="${not empty searchValue}" >
+            <c:set var="value" value="${requestScope.SEARCH_VALUE}" />
+            <c:if test="${not empty value}" >
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID</th>
+                            <th>name</th>
+                            <th>description</th>
+                            <th>price</th>
+                            <th>area</th>
+                            <th>update</th>
+                        </tr>
+                    </thead>
+                    <c:set var="error" value="${requestScope.CREATE_ERR}" />
+                    <c:if test="${not empty error.areaIsNotFormat}" >
+                        ${error.areaIsNotFormat}
+                    </c:if>
+                    <c:forEach var="dto" items="${value}" varStatus="counter">
+                        
                         <tbody>
+                        <form action="MainController" method="POST">
                             <tr>
                                 <td>
                                     ${counter.count}
                                 </td>
                                 <td>
                                     ${dto.id}
+                                    <input type="hidden" name="txtID" value="${dto.id}" />
                                 </td>
                                 <td>
-                                    ${dto.name}
+                                    <input type="text" name="txtName" value="${dto.name}" />
                                 </td>
-                                <td>${dto.description}</td>
-                                <td>${dto.price}</td>
-                                <td>${dto.area}</td>
+                                <td>
+                                    <input type="text" name="txtDescription" value="${dto.description}" />
+                                </td>
+                                <td>
+                                    <input type="text" name="txtPrice" value="${dto.price}" />
+                                </td>
+                                <td>
+                                    <input type="text" name="txtArea" value="${dto.area}" />
+                                </td>
+                                <td>
+                                    <input type="hidden" name="lastSearchValue" value="${searchValue}" />
+                                    <input type="submit" value="Update" name="action" />
+                                </td>
                             </tr>
-                        </tbody>
-                        </c:forEach>
-                    </table>
+                        </form>
+                    </tbody>
+                </c:forEach>
+            </table>
 
-                </c:if>
-                <c:if test="${empty value}">
-                    No recording
-                </c:if>
-            </c:if>
-    </body>
+        </c:if>
+        <c:if test="${empty value}">
+            No recording
+        </c:if>
+    </c:if>
+</body>
 </html>

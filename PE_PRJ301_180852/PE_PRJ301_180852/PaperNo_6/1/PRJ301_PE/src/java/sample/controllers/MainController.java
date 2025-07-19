@@ -21,7 +21,7 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_ACCOUNT = "LoginServlet";
     private static final String SEARCH_ROOM = "SearchServlet";
     private static final String LOGOUT_ACCOUNT = "LogoutServlet";
-    private static final String Delete_ACCOUNT = "DeleteServlet";
+    private static final String UPDATE_ACCOUNT = "UpdateServlet";
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,6 +43,9 @@ public class MainController extends HttpServlet {
                         break;
                     case "Search":
                         url = SEARCH_ROOM;
+                        break;
+                    case "Update":
+                        url = UPDATE_ACCOUNT;
                         break;
                     default:
                         throw new AssertionError();

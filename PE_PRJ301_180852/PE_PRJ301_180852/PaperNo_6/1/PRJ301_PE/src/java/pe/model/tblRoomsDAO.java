@@ -66,5 +66,40 @@ public class tblRoomsDAO implements Serializable{
             }
         }
     }
-    
+    public boolean updateRoom(String id, String name, String description, double price, double area)
+            throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String query = "UPDATE  tblRooms "
+                        + "SET name = ? ,"
+                        + "description = ? ,"
+                        + "price = ?, "
+                        + "area = ? "
+                        + "WHERE id = ?";                
+                
+                stm = con.prepareStatement(query);
+                stm.setString(1, name);
+                stm.setString(2, description);
+                stm.setDouble(3, price);
+                stm.setDouble(4, area);
+                stm.setString(5, id);
+                int effectRows = stm.executeUpdate();                
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }
