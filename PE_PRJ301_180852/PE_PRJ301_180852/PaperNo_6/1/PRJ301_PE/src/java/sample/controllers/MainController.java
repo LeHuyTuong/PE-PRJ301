@@ -6,10 +6,10 @@
 package sample.controllers;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -18,7 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 
     private static final String WELCOME="login.jsp";
-    
+    private static final String LOGIN_ACCOUNT = "LoginServlet";
+    private static final String SEARCH_ITEM = "SearchServlet";
+    private static final String LOGOUT_ACCOUNT = "LogoutServlet";
+    private static final String Delete_ACCOUNT = "DeleteServlet";
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -28,6 +31,17 @@ public class MainController extends HttpServlet {
         try {
             String action= request.getParameter("action");
 //            your code here
+            if(action == null){
+                url = WELCOME;
+            }else{
+                switch (action) {
+                    case "Login":
+                        url = LOGIN_ACCOUNT;
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
             
         } catch (Exception e) {
             log("Error at MainController: "+ e.toString());
