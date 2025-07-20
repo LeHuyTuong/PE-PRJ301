@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import pe.account.AccountCreateErr;
@@ -55,7 +56,6 @@ public class CreateServlet extends HttpServlet {
         String url = ERROR_PAGE;
         try {
             double expense = Double.parseDouble(btExpense);
-            Timestamp timeToMeet = Timestamp.valueOf(time.replace("T", " ") + ":00");
             if (phone.isEmpty()) {
                 foundErr = true;
                 errors.setPhoneFormat("Phone must 10 number");
@@ -81,15 +81,6 @@ public class CreateServlet extends HttpServlet {
 
                 AppointmentDAO dao = new AppointmentDAO();
                 AppointmentDTO dto = new AppointmentDTO();
-
-                dto.setAccount(account);
-                dto.setPartnerName(name);
-                dto.setPartnerPhone(phone);
-                dto.setTimeToMeet(timeToMeet);
-                dto.setPlace(place);
-                dto.setExpense(expense);
-                dto.setNote(note);
-
                 boolean result = dao.addAppointment(dto);
                 if (result == true) {
                     url = APP_PAGE;

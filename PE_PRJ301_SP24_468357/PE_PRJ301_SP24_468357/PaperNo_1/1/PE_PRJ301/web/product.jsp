@@ -66,6 +66,7 @@
                                         <c:param name="lastSearchValue" value="${searchValue}" />
                                     </c:url>
                                     <a href="${DeleteLink}">Delete</a>
+                                    
                                 </td>
                             </tr>
                         </tbody>

@@ -1,15 +1,13 @@
 package pe.appointment;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class AppointmentDTO implements Serializable{
     //your code here
     private int idApp;
-    private String account;
-    private String partnerPhone;
-    private String partnerName;
-    private Timestamp timeToMeet;
+    private String account, partnerPhone, partnerName;
+    private Date timeToMeet;
     private String place;
     private double expense;
     private String note;
@@ -17,7 +15,7 @@ public class AppointmentDTO implements Serializable{
     public AppointmentDTO() {
     }
 
-    public AppointmentDTO(int idApp, String account, String partnerPhone, String partnerName, Timestamp timeToMeet, String place, double expense, String note) {
+    public AppointmentDTO(int idApp, String account, String partnerPhone, String partnerName, Date timeToMeet, String place, double expense, String note) {
         this.idApp = idApp;
         this.account = account;
         this.partnerPhone = partnerPhone;
@@ -87,14 +85,14 @@ public class AppointmentDTO implements Serializable{
     /**
      * @return the timeToMeet
      */
-    public Timestamp getTimeToMeet() {
+    public Date getTimeToMeet() {
         return timeToMeet;
     }
 
     /**
      * @param timeToMeet the timeToMeet to set
      */
-    public void setTimeToMeet(Timestamp timeToMeet) {
+    public void setTimeToMeet(Date timeToMeet) {
         this.timeToMeet = timeToMeet;
     }
 
@@ -139,6 +137,5 @@ public class AppointmentDTO implements Serializable{
     public void setNote(String note) {
         this.note = note;
     }
-    
     
 }
