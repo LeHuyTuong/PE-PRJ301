@@ -36,9 +36,17 @@ public class UpdateLinkServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String code = request.getParameter("txtCode");
+        String name = request.getParameter("txtName");
         String url = EDIT_PAGE;
+        
         try {
             request.setAttribute("Code", code);
+            request.setAttribute("Name", name);
+            String urlhehe = "MainController"
+                        + "?action=Search"
+                        + "&code=" + code
+                        + "&name=" + name;
+            request.setAttribute("URL", urlhehe);
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

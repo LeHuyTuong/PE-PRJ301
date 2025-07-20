@@ -75,7 +75,6 @@
         </header>
 
         <c:set var="url" value="${requestScope.URL}" />
-
         <nav>
             <a href="${url}">Currency List</a>
             <a href="#">Welcome, ${sessionScope.USER_INFO.fullName}</a>
@@ -83,12 +82,18 @@
                 Logout
             </a>
         </nav>
-
+            <c:set var="user" value="${sessionScope.USER_INFO}" />
+        <c:if test="${empty user}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
         <h2>Update Currency Rate</h2>
-        <c:set var="result" value="${requestScope.Code}" />
+        <c:set var="resultCode" value="${requestScope.Code}" />
+        <c:set var="resultName" value="${requestScope.Code}" />
+        <c:set var="resultDescription" value="${requestScope.Code}" />
+        <c:set var="resultRate" value="${requestScope.Code}" />
         <form id="updateCurrencyForm" action="MainController"  >
-            <label for="code">Code: ${result}</label>
-            <input type="hidden" id="code" name="code" value="${result}" required>
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" value="${result}" readonly="readonly" required>
             
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="" required>

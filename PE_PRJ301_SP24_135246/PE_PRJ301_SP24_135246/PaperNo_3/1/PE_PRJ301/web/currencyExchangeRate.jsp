@@ -106,6 +106,7 @@
                                     </td>
                                     <td>
                                         ${dto.name}
+                                        <input type="hidden" name="txtName" value="${dto.name}" />
                                     </td>
                                     <td>
                                         ${dto.description}

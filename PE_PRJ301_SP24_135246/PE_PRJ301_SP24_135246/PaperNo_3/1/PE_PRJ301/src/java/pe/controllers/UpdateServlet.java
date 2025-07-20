@@ -41,7 +41,10 @@ public class UpdateServlet extends HttpServlet {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
         String rateStr = request.getParameter("rate");
-
+        System.out.println(rateStr);
+        System.out.println(description);
+        System.out.println(code);
+        System.out.println(name);
         boolean canRedirect = false;
         tblCurrencyCreateErr errors = new tblCurrencyCreateErr();
 
@@ -49,9 +52,13 @@ public class UpdateServlet extends HttpServlet {
         String url = EDIT_PAGE;
         try {
             double rate = Double.parseDouble(rateStr);
-
+            if(rate == 0){
+                errors.setEmptyRate("Rate is empty. Please enter rate");
+                request.setAttribute("CREATE_ERR", errors);
+            }
             tblCurrencyDAO dao = new tblCurrencyDAO();
             boolean result = dao.updateItem(name, code, description, rate);
+             System.out.println(result);
             if (result == true) {
                 canRedirect = true;
                 url = "MainController"
@@ -60,13 +67,7 @@ public class UpdateServlet extends HttpServlet {
                         + "&name=" + name;
                 request.setAttribute("URL", url);
             }
-        } catch (NumberFormatException ex) {
-            canRedirect = false;
-            log("Number Format " + ex.getMessage());
-            errors.setEmptyRate("Rate is empty. Please enter rate");
-            request.setAttribute("CREATE_ERR", errors);
-            url = EDIT_PAGE;
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             log("SQL: " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
             log("Class Not Found " + ex.getMessage());
