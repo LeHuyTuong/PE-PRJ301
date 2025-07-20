@@ -41,13 +41,10 @@ public class SearchServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String searchValue =request.getParameter("txtSearchValue");
         String url = PRODUCT_PAGE;
-                    System.out.println(searchValue);
-
         try  {
             tblProductDAO dao = new tblProductDAO();
             dao.searchValue(searchValue);
             List<tblProductDTO> result = dao.getList();
-            System.out.println(result);
             url = PRODUCT_PAGE;
             request.setAttribute("SEARCH_VALUE", result);
             
