@@ -35,6 +35,7 @@
                             <th>description</th>
                             <th>price</th>
                             <th>size</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <c:forEach var="dto" items="${result}"  varStatus="counter"> 
@@ -57,6 +58,15 @@
                                 </td>
                                 <td>
                                     ${dto.size}
+                                </td>
+                                <td>
+                                    <c:url var="DeleteLink" value="MainController">
+                                        <c:param name="action" value="Delete"/>
+                                        <c:param name="pk" value="${dto.id}" />
+                                        <c:param name="lastSearchValue" value="${searchValue}" />
+                                    </c:url>
+                                    <a href="${DeleteLink}">Delete</a>
+                                    
                                 </td>
                             </tr>
                         </tbody>

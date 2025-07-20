@@ -4,6 +4,7 @@
  */
 package pe.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -22,8 +23,8 @@ import pe.model.FashionDao;
 @WebServlet(name = "UpdateServlet", urlPatterns = {"/UpdateServlet"})
 public class UpdateServlet extends HttpServlet {
 
-        private static final String SEARCH_PAGE = "search.jsp";
-
+    private static final String SEARCH_PAGE = "search.jsp";
+    private final String UPDATE_PAGE = "Update.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,38 +38,41 @@ public class UpdateServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("txtID");
-        String name = request.getParameter("txtName");
-        String description = request.getParameter("txtDescription");        
-        String priceStr = request.getParameter("txtPrice");        
-        String size = request.getParameter("txtSize");        
-        String searchValue = request.getParameter("lastSearchValue");        
-        String url = SEARCH_PAGE;
+        String name = request.getParameter("txtNamereal");
+        String description = request.getParameter("txtDescription");
+        String priceStr = request.getParameter("txtPrice");
+        String size = request.getParameter("txtSize");
+        String searchValue = request.getParameter("lastSearchValue");
+        String url = UPDATE_PAGE;
         FashionCreateErr errors = new FashionCreateErr();
-        try{
+        boolean canRedirect = false;
+        try {
             double price = Double.parseDouble(priceStr);
             FashionDao dao = new FashionDao();
             boolean result = dao.updateItem(id, name, description, price, size);
-            if(result == true){
+            if (result == true) {
+                canRedirect =  true;
                 url = "MainController"
                         + "?txtName=" + searchValue
                         + "&action=Search";
             }
-        }
-        catch(NumberFormatException ex){
+        } catch (NumberFormatException ex) {
+            canRedirect = false;
             log("Number format exception" + ex.getMessage());
             errors.setNumberFormat("Price is double format");
             request.setAttribute("CREATE_ERRORS", errors);
-        }
-         catch(SQLException ex){
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
+        } catch (SQLException ex) {
             log("SQL" + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            log("Class not Found" + ex.getMessage());
+        } finally {
+            if (canRedirect) {
+                response.sendRedirect(url);
+            }
         }
-        catch(ClassNotFoundException ex){
-            log("Class not Found"+ ex.getMessage());
-        }
-        finally{
-            response.sendRedirect(url);
-        }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

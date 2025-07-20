@@ -33,9 +33,11 @@ public class tblProductDAO implements Serializable{
             if(con != null){
                 String query = "Select id, name, description, price, size, status "
                         + "FROM tblProduct "
-                        + "Where description like ? ";
+                        + "Where description like ? "
+                        + "And status = ?";
                 stm = con.prepareStatement(query);
                 stm.setString(1, "%" + searchValue + "%");
+                stm.setBoolean(2, true);
                 rs = stm.executeQuery();
                 while(rs.next()){
                     String id = rs.getString("id");
@@ -64,5 +66,34 @@ public class tblProductDAO implements Serializable{
             }
         }
     }
-   
+    
+    
+    public boolean deleteValue(String id) throws SQLException, ClassNotFoundException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = DBUtils.getConnection();
+            if(con != null){
+                String query ="UPDATE tblProduct "
+                        + "SET status = ? "
+                        + "Where id = ? ";
+                stm = con.prepareStatement(query);
+                stm.setBoolean(1, false);
+                stm.setString(2, id);
+                int effectRows = stm.executeUpdate();
+                if(effectRows > 0){
+                    result = true;
+                } 
+            }
+        }finally{
+            if(stm != null){
+                stm.close();
+            }
+            if(con != null){
+                con.close();
+            }
+        }
+        return result;
+    }
 }

@@ -2,6 +2,7 @@ package pe.appointment;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class AppointmentDAO implements Serializable {
                     String account = rs.getString("account");
                     String partnerPhone = rs.getString("partnerPhone");
                     String partnerName = rs.getString("partnerName");
-                    Timestamp timeToMeet = rs.getTimestamp("timeToMeet");
+                    Date timeToMeet = rs.getDate("timeToMeet");
                     String place = rs.getString("place");
                     Double expense = rs.getDouble("expense");
                     String note = rs.getString("note");
@@ -85,7 +86,7 @@ public class AppointmentDAO implements Serializable {
                 }
                 stm.setString(2, item.getAccount());
                 stm.setString(3, item.getPartnerName());
-                stm.setTimestamp(4, item.getTimeToMeet());
+                stm.setDate(4, item.getTimeToMeet());
                 stm.setString(5, item.getPlace());
                 stm.setDouble(6, item.getExpense());
                 stm.setString(7, item.getNote());
@@ -107,4 +108,5 @@ public class AppointmentDAO implements Serializable {
         }
         return result;
     }
+    
 }

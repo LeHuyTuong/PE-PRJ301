@@ -23,7 +23,7 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_ACCOUNT ="LoginServlet";
     private static final String LOGOUT_ACCOUNT ="LogoutServlet";
     private static final String SEARCH_ACCOUNT ="SearchServlet";
-    private static final String UPDATE_ACCOUNT ="UpdateServlet";
+    private static final String UPDATE_ITEM  ="UpdateServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,7 +54,7 @@ public class MainController extends HttpServlet {
                         url = SEARCH_ACCOUNT;
                         break;
                     case "Update":
-                        url = UPDATE_ACCOUNT;
+                        url = UPDATE_ITEM;
                         break;
                     default:
                         throw new AssertionError();

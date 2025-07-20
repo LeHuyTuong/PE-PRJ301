@@ -24,9 +24,9 @@
         <c:set var="searchValue" value="${param.txtName}"/>
         <c:if test="${not empty searchValue}">
             <c:set var="result" value="${requestScope.SEARCH_VALUE}"/>
-            <c:set var="errors" value="${requestScope.CREATE_ERRORS}}" />
+            <c:set var="errors" value="${requestScope.CREATE_ERRORS}" />
             <c:if test="${not empty errors.numberFormat}" >
-                    ${errors.numberFormat}
+                ${errors.numberFormat}
             </c:if>
             <c:if test="${not empty result}">
                 <table border="1">
@@ -42,8 +42,7 @@
                         </tr>
                     </thead>
                     <c:forEach var="dto" items="${result}" >
-                        <form action="MainController" method="POST">
-
+                        <form action="Update.jsp" method="POST">
                             <tbody>
                                 <tr>
                                     <td>
@@ -51,25 +50,29 @@
                                         <input type="hidden" name="txtID" value="${dto.id}" />
                                     </td>
                                     <td>
+                                        ${dto.name}
+                                        <input type="hidden" name="txtNamereal" value="${dto.name}" />
+                                    </td>
+                                    <td>
+                                        ${dto.description}
+                                        <input type="hidden" name="txtDescription" value="${dto.description}" />
 
-                                        <input type="text" name="txtName" value="${dto.name}" />
                                     </td>
                                     <td>
-                                        <input type="text" name="txtDescription" value="${dto.description}" />
-
+                                        ${dto.price}
+                                        <input type="hidden" name="txtPrice" value="${dto.price}" />
                                     </td>
                                     <td>
-                                        <input type="text" name="txtPrice" value="${dto.price}" />
-                                    </td>
-                                    <td>
-                                        <input type="text" name="txtSize" value="${dto.size}" />
+                                        ${dto.size}
+                                        <input type="hidden" name="txtSize" value="${dto.size}" />
                                     </td>
                                     <td>
                                         ${dto.status}
+                                        <input type="hidden" name="txtStatus" value="${dto.status}" />
                                     </td>
                                     <td>
-                                        <input type="hidden" name="lastSearchValue" value="${param.txtName}" />
-                                        <input type="submit" value="Update" name="action" />
+                                        <input type="hidden" name="lastSearchValue" value="${searchValue}" />
+                                        <input type="submit" value="UpdateLink" name="action" />
                                     </td>
                                 </tr>
                             </tbody>
