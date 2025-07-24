@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = LOGIN_PAGE;
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         try  {
             if(session != null){
                 session.invalidate();

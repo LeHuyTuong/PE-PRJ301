@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
             if(result != null){
                 url = WELCOME_PAGE;
                 HttpSession session = request.getSession();
-                session.setAttribute("USER_INFO", result);
+                    session.setAttribute("USER_INFO", result);
             }
                 errors.setInvalidUserOrPassword("Invalid user or password");
                 request.setAttribute("CREATE_ERROR", errors);
